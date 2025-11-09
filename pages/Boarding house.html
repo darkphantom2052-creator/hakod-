@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boarding Houses - JRMSU TC Boarding House System</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-primary-50 via-background to-secondary-50">
+    <!-- Navigation Header -->
+    <nav class="relative z-10 bg-white/80 backdrop-blur-sm border-b border-secondary-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-text-primary">JRMSU TC</h1>
+                        <p class="text-xs text-text-secondary">Boarding House System</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="student_dashboard.html" class="nav-link">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                        Dashboard
+                    </a>
+                    <a href="#" class="nav-link active">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        Boarding Houses
+                    </a>
+                </div>
+
+                <!-- Profile/Logout -->
+                <div class="relative flex items-center space-x-4">
+                    <button id="profileDropdown"
+                        class="flex items-center space-x-2 px-3 py-2 rounded-lg text-text-primary hover:bg-secondary-50 transition-all">
+                        <span class="text-sm font-medium" id="studentName">Student</span>
+                        <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- Profile Dropdown Menu -->
+                    <div id="profileMenu"
+                        class="hidden absolute right-0 top-full mt-1 w-56 bg-white rounded-xl shadow-xl py-2 border border-secondary-100 transform origin-top-right transition-all duration-200 z-50">
+                        <div class="px-4 py-2 border-b border-secondary-100 mb-2">
+                            <p class="text-sm font-medium text-text-primary" id="profileName">Student</p>
+                            <p class="text-xs text-text-secondary">Student Account</p>
+                        </div>
+                        <a href="student_dashboard.html"
+                            class="flex items-center px-4 py-2 text-sm text-text-primary hover:bg-secondary-50">
+                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                            Profile
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-text-primary hover:bg-secondary-50">
+                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Settings
+                        </a>
+                        <hr class="my-2 border-secondary-100">
+                        <a href="../index.html"
+                            class="flex items-center px-4 py-2 text-sm text-error hover:bg-error-50">
+                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-text-primary mb-3">Available Boarding Houses</h1>
+            <p class="text-lg text-text-secondary max-w-2xl mx-auto">Browse through our curated list of boarding houses
+                near JRMSU TC. Find your perfect accommodation with detailed information and instant booking.</p>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="bg-white rounded-xl shadow-sm border border-secondary-100 p-4 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="col-span-2">
+                    <label class="block text-sm font-medium text-text-secondary mb-2">Search</label>
+                    <input type="text" id="searchInput" placeholder="Search by name, location..."
+                        class="w-full rounded-lg border-secondary-200 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-text-secondary mb-2">Price Range</label>
+                    <select id="priceFilter"
+                        class="w-full rounded-lg border-secondary-200 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                        <option value="">All Prices</option>
+                        <option value="0-2000">Under ₱2,000</option>
+                        <option value="2000-4000">₱2,000 - ₱4,000</option>
+                        <option value="4000-6000">₱4,000 - ₱6,000</option>
+                        <option value="6000+">Above ₱6,000</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-text-secondary mb-2">Sort By</label>
+                    <select id="sortFilter"
+                        class="w-full rounded-lg border-secondary-200 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="name-asc">Name: A to Z</option>
+                        <option value="rating-desc">Rating</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button id="removeUntitledBtn" class="w-full btn-secondary text-sm">Remove Untitled Boarding
+                        Houses</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boarding Houses Grid -->
+        <div id="boardingHousesList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Boarding houses will be dynamically populated here -->
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="hidden text-center py-12">
+            <svg class="w-16 h-16 text-secondary-400 mx-auto mb-4" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            <h3 class="text-xl font-semibold text-text-primary mb-2">No Boarding Houses Found</h3>
+            <p class="text-text-secondary">Try adjusting your filters or search terms</p>
+        </div>
+    </main>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="bg-white rounded-xl shadow-xl w-full max-w-lg">
+                <div class="p-6 border-b border-secondary-100">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-semibold text-text-primary">Book a Room</h3>
+                        <button id="closeBookingModal" class="text-text-secondary hover:text-text-primary">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <form id="bookingForm" class="p-6 space-y-6">
+                    <input type="hidden" id="bookingRoomId">
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Move-in Date</label>
+                        <input type="date" id="moveInDate" required
+                            class="w-full rounded-lg border-secondary-200 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Duration (months)</label>
+                        <select id="duration" required
+                            class="w-full rounded-lg border-secondary-200 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                            <option value="1">1 month</option>
+                            <option value="3">3 months</option>
+                            <option value="6">6 months</option>
+                            <option value="12">1 year</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Special Requests/Notes</label>
+                        <textarea id="bookingNotes" rows="3"
+                            class="w-full rounded-lg border-secondary-200 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"></textarea>
+                    </div>
+                    <div class="border-t border-secondary-100 pt-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-text-secondary">Monthly Rate</span>
+                            <span class="text-lg font-semibold text-text-primary" id="bookingRate">₱0</span>
+                        </div>
+                        <button type="submit" class="w-full btn btn-primary">Submit Booking Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    // Boarding Houses listing script
+    (() => {
+        function readBoardingHouses() {
+            const list = [];
+            try {
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (!key) continue;
+                    if (key.startsWith('boardingHouse_')) {
+                        try {
+                            const raw = localStorage.getItem(key);
+                            if (!raw) continue;
+                            const obj = JSON.parse(raw);
+                            obj._storageKey = key;
+                            list.push(obj);
+                        } catch (e) { /* ignore parse errors */ }
+                    }
+                }
+            } catch (e) { console.error('Failed to read boarding houses', e); }
+            return list;
+        }
+
+        function enrichWithRoomInfo(bh) {
+            try {
+                const rooms = JSON.parse(localStorage.getItem('rooms') || '[]');
+                const myRooms = rooms.filter(r => String(r.landlordId) === String(bh.landlordId));
+                bh.roomCount = myRooms.length;
+                bh.minPrice = myRooms.reduce((min, r) => {
+                    const p = Number(r.price || r.monthlyRent || r.monthly || 0) || 0;
+                    return min === null ? p : Math.min(min, p);
+                }, null);
+            } catch (e) { bh.roomCount = 0; bh.minPrice = null; }
+            return bh;
+        }
+
+        function formatCurrency(v) {
+            try { return v == null ? '—' : '₱' + Number(v).toLocaleString('en-PH'); } catch (e) { return '₱0'; }
+        }
+
+        function createCard(bh) {
+            const div = document.createElement('div');
+            div.className = 'bg-white rounded-lg shadow-sm border p-4 flex flex-col';
+
+            const title = document.createElement('h3');
+            title.className = 'text-lg font-semibold text-text-primary mb-2';
+            title.textContent = bh.title || 'Untitled Boarding House';
+
+            const meta = document.createElement('p');
+            meta.className = 'text-xs text-text-secondary mb-3';
+            meta.textContent = bh.landlordId ? `Host ID: ${bh.landlordId}` : '';
+
+            const info = document.createElement('div');
+            info.className = 'flex items-center justify-between mb-4';
+            const rooms = document.createElement('div');
+            rooms.className = 'text-sm text-text-secondary';
+            rooms.textContent = `${bh.roomCount || 0} room(s)`;
+            const price = document.createElement('div');
+            price.className = 'text-sm font-medium text-text-primary';
+            price.textContent = bh.minPrice == null ? 'Price: —' : `From ${formatCurrency(bh.minPrice)}`;
+            info.appendChild(rooms);
+            info.appendChild(price);
+
+            const actions = document.createElement('div');
+            actions.className = 'mt-auto flex items-center justify-between';
+
+            const viewBtn = document.createElement('button');
+            viewBtn.className = 'btn-primary px-3 py-2 text-sm';
+            viewBtn.textContent = 'View Rooms';
+            viewBtn.addEventListener('click', function () {
+                try {
+                    // set a filter key so room_availability.html can read which landlord to show
+                    if (bh.landlordId) localStorage.setItem('student_view_landlord', String(bh.landlordId));
+                    // navigate to room availability page and pass landlordId as query param too
+                    const safeId = encodeURIComponent(String(bh.landlordId || ''));
+                    window.location.href = 'room_availability.html?landlordId=' + safeId;
+                } catch (e) { console.error(e); }
+            });
+
+            const contact = document.createElement('a');
+            contact.href = '#';
+            contact.className = 'text-sm text-primary underline';
+            contact.textContent = 'Contact Host';
+            contact.addEventListener('click', function (e) {
+                e.preventDefault();
+                alert('Contact feature not implemented. Host ID: ' + (bh.landlordId || '—'));
+            });
+
+            actions.appendChild(contact);
+            actions.appendChild(viewBtn);
+
+            div.appendChild(title);
+            div.appendChild(meta);
+            div.appendChild(info);
+            div.appendChild(actions);
+
+            // attach searchable data attributes
+            div.dataset.title = (bh.title || '').toLowerCase();
+            div.dataset.minPrice = bh.minPrice == null ? '' : String(bh.minPrice);
+
+            return div;
+        }
+
+        // Render list with filters
+        function renderList(items) {
+            const container = document.getElementById('boardingHousesList');
+            const noRes = document.getElementById('noResults');
+            if (!container) return;
+            container.innerHTML = '';
+            if (!items || items.length === 0) {
+                noRes.classList.remove('hidden');
+                return;
+            }
+            noRes.classList.add('hidden');
+            items.forEach(bh => {
+                const card = createCard(bh);
+                container.appendChild(card);
+            });
+        }
+
+        function applyFilters(rawItems) {
+            const q = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+            const priceVal = document.getElementById('priceFilter')?.value || '';
+            const sortVal = document.getElementById('sortFilter')?.value || '';
+
+            let items = rawItems.slice();
+            if (q) {
+                items = items.filter(i => ((i.title || '') + ' ' + (i.landlordId || '')).toLowerCase().includes(q));
+            }
+
+            if (priceVal) {
+                items = items.filter(i => {
+                    const p = Number(i.minPrice || 0) || 0;
+                    if (priceVal === '0-2000') return p > 0 && p < 2000;
+                    if (priceVal === '2000-4000') return p >= 2000 && p <= 4000;
+                    if (priceVal === '4000-6000') return p > 4000 && p <= 6000;
+                    if (priceVal === '6000+') return p > 6000;
+                    return true;
+                });
+            }
+
+            if (sortVal) {
+                if (sortVal === 'price-asc') items.sort((a, b) => (Number(a.minPrice || 0) || 0) - (Number(b.minPrice || 0) || 0));
+                if (sortVal === 'price-desc') items.sort((a, b) => (Number(b.minPrice || 0) || 0) - (Number(a.minPrice || 0) || 0));
+                if (sortVal === 'name-asc') items.sort((a, b) => String(a.title || '').localeCompare(String(b.title || '')));
+            }
+
+            renderList(items);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // load
+            let raw = readBoardingHouses().map(enrichWithRoomInfo);
+            renderList(raw);
+
+            // wire filters
+            document.getElementById('searchInput')?.addEventListener('input', () => applyFilters(raw));
+            document.getElementById('priceFilter')?.addEventListener('change', () => applyFilters(raw));
+            document.getElementById('sortFilter')?.addEventListener('change', () => applyFilters(raw));
+            // wire remove untitled button
+            document.getElementById('removeUntitledBtn')?.addEventListener('click', function () {
+                if (!confirm('Remove all untitled or empty-title boarding houses from storage? This cannot be undone.')) return;
+                let removed = 0;
+                try {
+                    const keys = [];
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const key = localStorage.key(i);
+                        if (key && key.startsWith('boardingHouse_')) keys.push(key);
+                    }
+                    keys.forEach(k => {
+                        try {
+                            const raw = localStorage.getItem(k);
+                            if (!raw) return;
+                            const obj = JSON.parse(raw);
+                            const title = (obj && obj.title) ? String(obj.title).trim() : '';
+                            if (!title || title.toLowerCase().includes('untitled')) {
+                                localStorage.removeItem(k);
+                                removed++;
+                            }
+                        } catch (e) { /* ignore */ }
+                    });
+                } catch (e) { console.error(e); }
+                alert('Removed ' + removed + ' untitled boarding house(s).');
+                // refresh list
+                raw = readBoardingHouses().map(enrichWithRoomInfo);
+                applyFilters(raw);
+            });
+        });
+    })();
+</script>
+<script>
+    // Profile dropdown functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        const profileButton = document.getElementById('profileDropdown');
+        const profileMenu = document.getElementById('profileMenu');
+        const buttonArrow = profileButton?.querySelector('svg');
+
+        if (profileMenu) {
+            // Add initial state classes for animation
+            profileMenu.classList.add('opacity-0', 'scale-95', 'transition-all', 'duration-200', 'ease-in-out');
+        }
+
+        // Toggle menu on profile button click
+        profileButton?.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isVisible = !profileMenu?.classList.contains('hidden');
+
+            // Toggle menu visibility with animation
+            if (isVisible) {
+                // Hide menu
+                profileMenu?.classList.add('opacity-0', 'scale-95');
+                buttonArrow?.classList.remove('rotate-180');
+                setTimeout(() => profileMenu?.classList.add('hidden'), 200);
+            } else {
+                // Show menu
+                profileMenu?.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        profileMenu?.classList.remove('opacity-0', 'scale-95');
+                        buttonArrow?.classList.add('rotate-180');
+                    });
+                });
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!profileMenu?.contains(e.target) && !profileButton?.contains(e.target) && !profileMenu?.classList.contains('hidden')) {
+                profileMenu?.classList.add('opacity-0', 'scale-95');
+                buttonArrow?.classList.remove('rotate-180');
+                setTimeout(() => profileMenu?.classList.add('hidden'), 200);
+            }
+        });
+
+        // Show student name if available
+        try {
+            const studentData = JSON.parse(localStorage.getItem('studentData') || '{}');
+            const studentName = document.getElementById('studentName');
+            const profileName = document.getElementById('profileName');
+            if (studentData.name) {
+                if (studentName) studentName.textContent = studentData.name;
+                if (profileName) profileName.textContent = studentData.name;
+            }
+        } catch (e) { /* ignore */ }
+
+        // Add hover effect to menu items
+        profileMenu?.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', function () {
+                this.classList.add('bg-secondary-50');
+            });
+            link.addEventListener('mouseleave', function () {
+                this.classList.remove('bg-secondary-50');
+            });
+        });
+    });
+</script>
+```

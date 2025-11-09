@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landlord Dashboard - JRMSU TC Boarding House System</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script type="module"
+        src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fjrmsutcb4972back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+    <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+</head>
+
+<body class="min-h-screen bg-background">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-sm border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-text-primary">JRMSU TC Landlord</h1>
+                        <p class="text-xs text-text-secondary">Boarding House Management</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <div class="relative">
+                        <button id="profileDropdown"
+                            class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200">
+                            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                </svg>
+                            </div>
+                            <span class="text-sm font-medium">Landlord</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div id="profileMenu"
+                            class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-secondary-200 z-50">
+                            <a href="landlord_login.html"
+                                class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-50 hover:text-text-primary">
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn"
+                    class="md:hidden p-2 rounded-md text-text-secondary hover:text-primary hover:bg-secondary-100 transition-colors duration-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-secondary-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+
+                <a href="landlord_login.html"
+                    class="block px-3 py-2 text-text-secondary hover:text-primary hover:bg-secondary-50 rounded-md">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Dashboard Header -->
+        <div class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-text-primary">Dashboard Overview</h1>
+                    <p class="mt-2 text-text-secondary">Welcome back, Landlord. Here's what's happening today.</p>
+                </div>
+                <div class="mt-4 sm:mt-0 flex items-center space-x-3">
+                    <div class="text-sm text-text-secondary">
+                        Last updated: <span class="font-medium">Oct 12, 2025 5:47 AM</span>
+                    </div>
+                    <button id="exportReportBtn" class="btn-primary">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                        </svg>
+                        Export Report
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Performance Metrics -->
+        <section class="mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Current Occupancy -->
+                <div class="card-elevated p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-text-secondary">Current Occupancy</p>
+                            <p class="text-2xl font-bold text-text-primary"><span id="occupancyPct">—</span>%</p>
+                            <p class="text-xs text-success" id="occupancyDelta">+0% from last month</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pending Applications -->
+                <div class="card-elevated p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-text-secondary">Pending Applications</p>
+                            <p class="text-2xl font-bold text-text-primary"><span id="pendingApplicationsCount">0</span>
+                            </p>
+                            <p class="text-xs text-warning">Requires attention</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overdue Payments -->
+                <div class="card-elevated p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-error-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-text-secondary">Overdue Payments</p>
+                            <p class="text-2xl font-bold text-text-primary"> <span id="overduePaymentsAmount">₱0</span>
+                            </p>
+                            <p class="text-xs text-error"><span id="overdueCount">0</span> students affected</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maintenance Requests -->
+                <div class="card-elevated p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1 1 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1 1 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1 1 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1 1 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1 1 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1 1 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-text-secondary">Maintenance Requests</p>
+                            <p class="text-2xl font-bold text-text-primary"><span id="maintenanceRequestsCount">0</span>
+                            </p>
+                            <p class="text-xs text-accent" id="maintenanceRequestsDetail">—</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Applications (tenant booking requests) -->
+        <section id="applicationsSection" class="mt-6">
+            <div class="card-elevated">
+                <div class="p-6 border-b border-secondary-200">
+                    <h2 class="text-lg font-semibold text-text-primary">Tenant Applications</h2>
+                </div>
+                <div class="p-6 overflow-x-auto">
+                    <table class="min-w-full divide-y divide-secondary-200">
+                        <thead class="bg-secondary-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">
+                                    Applicant</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">Room
+                                </th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">
+                                    Move-in</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">
+                                    Duration</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">Status
+                                </th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">
+                                    Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applicationsTableBody" class="bg-white divide-y divide-secondary-200"></tbody>
+                    </table>
+                    <p id="noApplications" class="text-sm text-text-secondary mt-4 hidden">No applications found for
+                        your boarding house.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payments -->
+        <section id="paymentsSection" class="mt-6">
+            <div class="card-elevated">
+                <div class="p-6 border-b border-secondary-200">
+                    <h2 class="text-lg font-semibold text-text-primary">Payments</h2>
+                </div>
+                <div class="p-6 overflow-x-auto">
+                    <table class="min-w-full divide-y divide-secondary-200">
+                        <thead class="bg-secondary-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">Payer
+                                </th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">Room
+                                </th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">Amount
+                                </th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">Date
+                                </th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">Status
+                                </th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-text-secondary uppercase">
+                                    Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentsTableBody" class="bg-white divide-y divide-secondary-200"></tbody>
+                    </table>
+                    <p id="noPayments" class="text-sm text-text-secondary mt-4 hidden">No payments found for your
+                        boarding house.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Boarding House Rooms (dynamically rendered from room_availability) -->
+            <div class="lg:col-span-2">
+                <div class="card-elevated">
+                    <div class="p-6 border-b border-secondary-200">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-lg font-semibold text-text-primary">MY Boarding House </h2>
+                            <div class="flex items-center space-x-4 text-xs">
+                                <button id="addRoomBtn" class="btn-primary flex items-center text-sm">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 4v16m8-8H4" />
+                                    </svg>
+                                    Add Room
+                                </button>
+                                <button id="manageBoardingBtn" class="btn-secondary flex items-center text-sm">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 7h18M3 12h18M3 17h18" />
+                                    </svg>
+                                    Boarding House
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div id="roomsContainer"
+                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-stretch">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity & Quick Actions -->
+            <div class="space-y-6">
+                <!-- Quick Actions -->
+                <div class="card-elevated">
+                    <div class="p-6 border-b border-secondary-200">
+                        <h2 class="text-lg font-semibold text-text-primary">Quick Actions</h2>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <button id="reviewAppsBtn" class="w-full btn-primary justify-start">
+                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Review Applications
+                        </button>
+                        <button id="processPaymentsBtn" class="w-full btn-secondary justify-start">
+                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                            </svg>
+                            Process Payments
+                        </button>
+                        <button id="assignMaintenanceBtn" class="w-full btn-secondary justify-start">
+                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1 1 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1 1 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1 1 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1 1 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1 1 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1 1 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Assign Maintenance
+                        </button>
+                        <button id="sendNotificationsBtn" class="w-full btn-secondary justify-start">
+                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                            Send Notifications
+                        </button>
+
+
+                        <!-- Recent Activity -->
+                        <div class="card-elevated">
+                            <div class="p-6 border-b border-secondary-200">
+                                <h2 class="text-lg text-text-primary">Recent Activity</h2>
+                            </div>
+                            <div class="p-6">
+                                <div id="recentActivityList" class="space-y-4">
+                                    <div class="flex items-start space-x-3">
+                                        <div
+                                            class="flex-shrink-0 w-8 h-8 bg-success-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-sm text-text-primary">
+                                                <span class="font-medium">Maria Santos</span> payment confirmed
+                                            </p>
+                                            <p class="text-xs text-text-secondary">₱5,500 • Room A101 • 2 minutes ago
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start space-x-3">
+                                        <div
+                                            class="flex-shrink-0 w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-sm text-text-primary">
+                                                New application from <span class="font-medium">Jose Rivera</span>
+                                            </p>
+                                            <p class="text-xs text-text-secondary">Computer Science • 15 minutes ago</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start space-x-3">
+                                        <div
+                                            class="flex-shrink-0 w-8 h-8 bg-warning-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-4 h-4 text-warning" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1 1 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1 1 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1 1 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1 1 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1 1 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1 1 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-sm text-text-primary">
+                                                Maintenance completed for <span class="font-medium">Room A105</span>
+                                            </p>
+                                            <p class="text-xs text-text-secondary">Plumbing repair • 1 hour ago</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start space-x-3">
+                                        <div
+                                            class="flex-shrink-0 w-8 h-8 bg-accent-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-sm text-text-primary">
+                                                <span class="font-medium">Carlos Mendoza</span> checked in
+                                            </p>
+                                            <p class="text-xs text-text-secondary">Room A106 • 3 hours ago</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start space-x-3">
+                                        <div
+                                            class="flex-shrink-0 w-8 h-8 bg-error-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-4 h-4 text-error" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-sm text-text-primary">
+                                                Payment overdue: <span class="font-medium">Ana Rodriguez</span>
+                                            </p>
+                                            <p class="text-xs text-text-secondary">₱5,500 • Room A104 • 5 hours ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Summary -->
+
+
+                    <!-- Student Search & Management -->
+
+
+    </main>
+
+    <!-- Live notification toast -->
+    <div id="liveToast" class="fixed top-6 right-6 z-50 hidden">
+        <div id="liveToastInner"
+            class="max-w-sm w-96 bg-white border border-secondary-200 rounded-lg shadow-lg p-3 flex items-start space-x-3">
+            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6z" />
+                </svg>
+            </div>
+            <div class="flex-1">
+                <div id="liveToastMessage" class="text-sm font-medium text-text-primary">New application received</div>
+                <div id="liveToastSub" class="text-xs text-text-secondary">You have new booking requests</div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button id="liveToastViewBtn" class="text-sm text-primary underline">View</button>
+                <button id="liveToastCloseBtn" class="text-sm text-text-secondary">✕</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Composer Modal -->
+    <div id="notificationComposerModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div class="bg-white w-full max-w-lg rounded-lg overflow-hidden shadow-lg">
+            <div class="p-4 border-b border-secondary-200 flex items-center justify-between">
+                <h3 class="text-lg font-semibold">Send Notification</h3>
+                <button id="notificationComposerClose" class="text-text-secondary">✕</button>
+            </div>
+            <div class="p-4">
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-sm text-text-secondary mb-1 block">Notification Type</label>
+                        <select id="notificationType" class="form-select w-full">
+                            <option value="announcement">General Announcement</option>
+                            <option value="payment">Payment Reminder</option>
+                            <option value="maintenance">Maintenance Update</option>
+                            <option value="rules">House Rules Update</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-sm text-text-secondary mb-1 block">Title</label>
+                        <input id="notificationTitle" type="text" class="form-input w-full"
+                            placeholder="Enter notification title">
+                    </div>
+                    <div>
+                        <label class="text-sm text-text-secondary mb-1 block">Message</label>
+                        <textarea id="notificationMessage" class="form-textarea w-full h-24"
+                            placeholder="Enter your message"></textarea>
+                    </div>
+                    <div>
+                        <label class="text-sm text-text-secondary mb-1 block">Send To</label>
+                        <select id="notificationRecipients" class="form-select w-full">
+                            <option value="all">All Students</option>
+                            <option value="unpaid">Students with Unpaid Rent</option>
+                            <option value="maintenance">Students with Pending Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 border-t border-secondary-200 flex justify-end space-x-3">
+                <button id="notificationComposerCancel" class="btn-secondary">Cancel</button>
+                <button id="notificationComposerSend" class="btn-primary">Send Notification</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room Editor Modal (Add / Edit Room) -->
+    <div id="roomEditorModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div class="bg-white w-full max-w-lg rounded-lg overflow-hidden shadow-lg">
+            <div class="p-4 border-b border-secondary-200 flex items-center justify-between">
+                <h3 id="roomEditorTitle" class="text-lg font-semibold">Add Room</h3>
+                <button id="roomEditorClose" class="text-text-secondary">✕</button>
+            </div>
+            <div class="p-4">
+                <div class="space-y-3">
+                    <div>
+                        <label class="text-xs text-text-secondary">Title</label>
+                        <input id="roomTitleInput" type="text" class="form-input w-full mt-1" />
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="text-xs text-text-secondary">Price</label>
+                            <input id="roomPriceInput" type="number" class="form-input w-full mt-1" />
+                        </div>
+                        <div>
+                            <label class="text-xs text-text-secondary">Beds</label>
+                            <input id="roomBedsInput" type="number" class="form-input w-full mt-1" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs text-text-secondary">Floor / Location</label>
+                        <input id="roomFloorInput" type="text" class="form-input w-full mt-1" />
+                    </div>
+                    <div>
+                        <label class="text-xs text-text-secondary">Image</label>
+                        <div class="mt-2 flex items-center space-x-3">
+                            <img id="roomImagePreview"
+                                src="https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                alt="preview" class="w-24 h-16 object-cover rounded-md border" />
+                            <div>
+                                <input id="roomEditorImageInput" type="file" accept="image/*" class="hidden" />
+                                <button id="roomEditorChooseImage" class="btn-secondary text-sm">Choose Image</button>
+                                <p id="roomImageInfo" class="text-xs text-text-secondary mt-2">Max: browser storage may
+                                    be limited.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 border-t border-secondary-200 flex justify-end space-x-3">
+                <button id="roomEditorCancel" class="btn-secondary">Cancel</button>
+                <button id="roomEditorSave" class="btn-primary">Save Room</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-secondary-200 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <div class="text-sm text-text-secondary">
+                    © 2025 Jose Rizal Memorial State University - Tampilisan Campus. All Rights Reserved.
+                </div>
+                <div class="mt-4 md:mt-0 flex items-center space-x-6 text-sm text-text-secondary">
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Support</a>
+                    <a href="javascript:void(0)"
+                        class="hover:text-primary transition-colors duration-200">Documentation</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">System
+                        Status</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../public/js/landlord.dashboard.js"></script>
+    <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+
+</html>

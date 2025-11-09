@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Room Booking Request - JRMSU TC Boarding House System</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script type="module"
+        src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fjrmsutcb4972back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+    <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-primary-50 via-background to-secondary-50">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5" />
+                </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#grid)" />
+        </svg>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="relative z-10 bg-white/80 backdrop-blur-sm border-b border-secondary-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-text-primary">JRMSU TC</h1>
+                        <p class="text-xs text-text-secondary">Boarding House System</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="student_dashboard.html"
+                        class="text-text-secondary hover:text-primary transition-colors duration-200">
+                        Dashboard
+                    </a>
+                    <a href="room_availability.html"
+                        class="text-text-secondary hover:text-primary transition-colors duration-200">
+                        Room Availability
+                    </a>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                            </svg>
+                        </div>
+                        <span class="text-sm text-text-primary">Student</span>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button
+                    class="md:hidden p-2 rounded-md text-text-secondary hover:text-primary hover:bg-secondary-100 transition-colors duration-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Breadcrumb -->
+        <nav class="flex mb-8" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="student_dashboard.html"
+                        class="inline-flex items-center text-sm font-medium text-text-secondary hover:text-primary">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-text-muted" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <a href="room_availability.html"
+                            class="ml-1 text-sm font-medium text-text-secondary hover:text-primary md:ml-2">Room
+                            Availability</a>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-text-muted" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span class="ml-1 text-sm font-medium text-text-primary md:ml-2">Booking Request</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-text-primary mb-2">Room Booking Request</h1>
+            <p class="text-text-secondary">Complete your application for boarding house accommodation</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Selected Room Details -->
+            <div class="lg:col-span-1">
+                <div class="card-elevated p-6 sticky top-8">
+                    <h2 class="text-xl font-semibold text-text-primary mb-4">Selected Room</h2>
+
+                    <!-- Room Image -->
+                    <div class="relative mb-4 overflow-hidden rounded-lg">
+                        <img id="selectedRoomImage"
+                            src="https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Room 201A Interior" class="w-full h-48 object-cover" loading="lazy"
+                            onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        <div class="absolute top-3 right-3">
+                            <span class="status-success">Available</span>
+                        </div>
+                        <!-- Editing of images is handled from the Landlord Dashboard. Booking page only displays stored images. -->
+                    </div>
+
+                    <!-- Room Details -->
+                    <div class="space-y-3">
+                        <div>
+                            <h3 id="selectedRoomTitle" class="font-semibold text-text-primary">Room 201A</h3>
+                            <p id="selectedRoomLocation" class="text-sm text-text-secondary">Building A, 2nd Floor</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <span class="text-text-secondary">Capacity:</span>
+                                <span class="font-medium text-text-primary ml-1">2 Students</span>
+                            </div>
+                            <div>
+                                <span class="text-text-secondary">Occupied:</span>
+                                <span class="font-medium text-text-primary ml-1">0 Students</span>
+                            </div>
+                        </div>
+
+                        <!-- Amenities -->
+                        <div>
+                            <h4 class="font-medium text-text-primary mb-2">Amenities</h4>
+                            <div class="grid grid-cols-2 gap-2 text-sm">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Air Conditioning
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    WiFi Access
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Study Desk
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Shared Bathroom
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pricing -->
+                        <div class="border-t border-secondary-200 pt-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-text-secondary">Monthly Rent:</span>
+                                <span id="monthlyRent" class="text-xl font-bold text-primary">₱3,500</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-text-secondary">Security Deposit:</span>
+                                <span id="securityDeposit" class="font-medium text-text-primary">₱3,500</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-text-secondary">Application Fee:</span>
+                                <span id="applicationFee" class="font-medium text-text-primary">₱500</span>
+                            </div>
+                            <div class="border-t border-secondary-200 mt-2 pt-2">
+                                <div class="flex justify-between items-center font-semibold">
+                                    <span class="text-text-primary">Initial Payment:</span>
+                                    <span id="initialPayment" class="text-lg text-primary">₱7,500</span>
+                                </div>
+                            </div>
+                            <!-- Hidden inputs to capture selected room and price for submission -->
+                            <input type="hidden" id="selectedRoomInput" name="selectedRoom" />
+                            <input type="hidden" id="selectedPriceInput" name="selectedPrice" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Form -->
+            <div class="lg:col-span-2">
+                <form id="bookingForm" class="space-y-8">
+                    <!-- Personal Information -->
+                    <div class="card-elevated p-6">
+                        <h2 class="text-xl font-semibold text-text-primary mb-6 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Personal Information
+                        </h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input"
+                                    placeholder="Enter your first name" required />
+                                <div id="firstNameError" class="form-error hidden">First name is required</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input"
+                                    placeholder="Enter your last name" required />
+                                <div id="lastNameError" class="form-error hidden">Last name is required</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="studentId" class="form-label">Student ID *</label>
+                                <input type="text" id="studentId" name="studentId" class="form-input"
+                                    placeholder="e.g., 2024-001234" required />
+                                <div id="studentIdError" class="form-error hidden">Valid student ID is required</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="course" class="form-label">Course/Program *</label>
+                                <select id="course" name="course" class="form-input" required>
+                                    <option value>Select your course</option>
+                                    <option value="BSIT">Bachelor of Science in Information System</option>
+                                    <option value="BSCS">Bachelor of Science in Computer Science</option>
+                                    <option value="BSEd">Bachelor of Secondary Education</option>
+                                    <option value="BSBA">Bachelor of Science in Business Administration</option>
+                                    <option value="BSED">Bachelor of Education</option>
+                                </select>
+                                <div id="courseError" class="form-error hidden">Please select your course</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="yearLevel" class="form-label">Year Level *</label>
+                                <select id="yearLevel" name="yearLevel" class="form-input" required>
+                                    <option value>Select year level</option>
+                                    <option value="1st">1st Year</option>
+                                    <option value="2nd">2nd Year</option>
+                                    <option value="3rd">3rd Year</option>
+                                    <option value="4th">4th Year</option>
+                                    <option value="5th">5th Year</option>
+                                </select>
+                                <div id="yearLevelError" class="form-error hidden">Please select your year level</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactNumber" class="form-label">Contact Number *</label>
+                                <input type="tel" id="contactNumber" name="contactNumber" class="form-input"
+                                    placeholder="09XX-XXX-XXXX" required />
+                                <div id="contactNumberError" class="form-error hidden">Valid contact number is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Occupancy Details -->
+                    <div class="card-elevated p-6">
+                        <h2 class="text-xl font-semibold text-text-primary mb-6 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Occupancy Preferences
+                        </h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label for="moveInDate" class="form-label">Preferred Move-in Date *</label>
+                                <input type="date" id="moveInDate" name="moveInDate" class="form-input" required />
+                                <div id="moveInDateError" class="form-error hidden">Move-in date is required</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="duration" class="form-label">Intended Stay Duration *</label>
+                                <select id="duration" name="duration" class="form-input" required>
+                                    <option value>Select duration</option>
+                                    <option value="1-semester">1 Semester</option>
+                                    <option value="1-year">1 Academic Year</option>
+                                    <option value="2-years">2 Academic Years</option>
+                                    <option value="until-graduation">Until Graduation</option>
+                                </select>
+                                <div id="durationError" class="form-error hidden">Please select intended duration</div>
+                            </div>
+
+                            <div class="form-group md:col-span-2">
+                                <label for="roommatePreference" class="form-label">Roommate Preference</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="roommatePreference" value="no-preference" class="mr-2"
+                                            checked />
+                                        <span class="text-sm text-text-primary">No preference</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="roommatePreference" value="specific-person"
+                                            class="mr-2" />
+                                        <span class="text-sm text-text-primary">I have a specific roommate in
+                                            mind</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="roommatePreference" value="same-course"
+                                            class="mr-2" />
+                                        <span class="text-sm text-text-primary">Prefer someone from the same
+                                            course</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group md:col-span-2" id="roommateDetails" style="display: none;">
+                                <label for="roommateInfo" class="form-label">Roommate Information</label>
+                                <input type="text" id="roommateInfo" name="roommateInfo" class="form-input"
+                                    placeholder="Enter roommate's name or student ID" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Special Accommodations -->
+                    <div class="card-elevated p-6">
+                        <h2 class="text-xl font-semibold text-text-primary mb-6 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Special Accommodations & Requests
+                        </h2>
+
+                        <div class="space-y-6">
+                            <div class="form-group">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="hasAllergies" name="hasAllergies" class="mr-2" />
+                                    <span class="text-sm text-text-primary">I have allergies or medical conditions that
+                                        require special consideration</span>
+                                </label>
+                            </div>
+
+                            <div class="form-group" id="allergyDetails" style="display: none;">
+                                <label for="allergyInfo" class="form-label">Please describe your allergies or medical
+                                    conditions</label>
+                                <textarea id="allergyInfo" name="allergyInfo" rows="3" class="form-input"
+                                    placeholder="Describe any allergies, medical conditions, or special needs..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="additionalRequests" class="form-label">Additional Requests or
+                                    Comments</label>
+                                <textarea id="additionalRequests" name="additionalRequests" rows="4" class="form-input"
+                                    placeholder="Any additional requests, concerns, or information you'd like to share..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Contact -->
+                    <div class="card-elevated p-6">
+                        <h2 class="text-xl font-semibold text-text-primary mb-6 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                            </svg>
+                            Emergency Contact Information
+                        </h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label for="emergencyName" class="form-label">Emergency Contact Name *</label>
+                                <input type="text" id="emergencyName" name="emergencyName" class="form-input"
+                                    placeholder="Full name" required />
+                                <div id="emergencyNameError" class="form-error hidden">Emergency contact name is
+                                    required</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="emergencyRelationship" class="form-label">Relationship *</label>
+                                <select id="emergencyRelationship" name="emergencyRelationship" class="form-input"
+                                    required>
+                                    <option value>Select relationship</option>
+                                    <option value="parent">Parent</option>
+                                    <option value="guardian">Guardian</option>
+                                    <option value="sibling">Sibling</option>
+                                    <option value="relative">Other Relative</option>
+                                    <option value="friend">Friend</option>
+                                </select>
+                                <div id="emergencyRelationshipError" class="form-error hidden">Please select
+                                    relationship</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="emergencyPhone" class="form-label">Emergency Contact Number *</label>
+                                <input type="tel" id="emergencyPhone" name="emergencyPhone" class="form-input"
+                                    placeholder="09XX-XXX-XXXX" required />
+                                <div id="emergencyPhoneError" class="form-error hidden">Emergency contact number is
+                                    required</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="emergencyEmail" class="form-label">Emergency Contact Email</label>
+                                <input type="email" id="emergencyEmail" name="emergencyEmail" class="form-input"
+                                    placeholder="email@example.com" />
+                            </div>
+
+                            <div class="form-group md:col-span-2">
+                                <label for="emergencyAddress" class="form-label">Emergency Contact Address *</label>
+                                <textarea id="emergencyAddress" name="emergencyAddress" rows="2" class="form-input"
+                                    placeholder="Complete address" required></textarea>
+                                <div id="emergencyAddressError" class="form-error hidden">Emergency contact address is
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Document Upload -->
+
+
+                    <!-- Terms and Conditions -->
+                    <div class="card-elevated p-6">
+                        <h2 class="text-xl font-semibold text-text-primary mb-6 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Terms and Conditions
+                        </h2>
+
+                        <div class="space-y-4">
+                            <div
+                                class="bg-secondary-50 border border-secondary-200 rounded-lg p-4 max-h-48 overflow-y-auto">
+                                <h3 class="font-medium text-text-primary mb-3">JRMSU TC Boarding House Rules and
+                                    Regulations</h3>
+                                <div class="text-sm text-text-secondary space-y-2">
+                                    <p><strong>1. Payment Terms:</strong> Monthly rent is due on the 1st of each month.
+                                        Late payments incur a ₱100 penalty per day.</p>
+                                    <p><strong>2. Occupancy Rules:</strong> Maximum occupancy per room must be strictly
+                                        observed. Unauthorized guests are not allowed overnight.</p>
+                                    <p><strong>3. Quiet Hours:</strong> Quiet hours are from 10:00 PM to 6:00 AM. Loud
+                                        music, parties, or disruptive behavior is prohibited.</p>
+                                    <p><strong>4. Cleanliness:</strong> Students are responsible for maintaining
+                                        cleanliness in their rooms and common areas.</p>
+                                    <p><strong>5. Damage Policy:</strong> Students are liable for any damage to property
+                                        beyond normal wear and tear.</p>
+                                    <p><strong>6. Visitors:</strong> All visitors must be registered at the front desk
+                                        and are allowed only during designated hours (8:00 AM - 8:00 PM).</p>
+                                    <p><strong>7. Security:</strong> Students must always carry their boarding house ID
+                                        and are responsible for their personal belongings.</p>
+                                    <p><strong>8. Prohibited Items:</strong> Alcoholic beverages, illegal drugs,
+                                        weapons, and cooking appliances are strictly prohibited.</p>
+                                    <p><strong>9. Termination:</strong> Violation of rules may result in immediate
+                                        termination of boarding house privileges without refund.</p>
+                                    <p><strong>10. Emergency Procedures:</strong> Students must familiarize themselves
+                                        with emergency exits and procedures.</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3">
+                                <label class="flex items-start">
+                                    <input type="checkbox" id="agreeRules" name="agreeRules" class="mt-1 mr-3"
+                                        required />
+                                    <span class="text-sm text-text-primary">I have read and agree to abide by all
+                                        boarding house rules and regulations stated above.</span>
+                                </label>
+
+                                <label class="flex items-start">
+                                    <input type="checkbox" id="agreePayment" name="agreePayment" class="mt-1 mr-3"
+                                        required />
+                                    <span class="text-sm text-text-primary">I understand the payment terms and agree to
+                                        pay the monthly rent and fees on time.</span>
+                                </label>
+
+                                <label class="flex items-start">
+                                    <input type="checkbox" id="agreeInfo" name="agreeInfo" class="mt-1 mr-3" required />
+                                    <span class="text-sm text-text-primary">I certify that all information provided in
+                                        this application is true and accurate.</span>
+                                </label>
+
+                                <div id="agreementError" class="form-error hidden">You must agree to all terms and
+                                    conditions</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method Selection -->
+                    <div class="card-elevated p-6">
+                        <h2 class="text-xl font-semibold text-text-primary mb-6 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
+                                <path fill-rule="evenodd"
+                                    d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Payment Method
+                        </h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label
+                                class="border border-secondary-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors duration-200">
+                                <input type="radio" name="paymentMethod" value="gcash" class="sr-only" />
+                                <div class="text-center">
+                                    <div
+                                        class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium text-text-primary">GCash</span>
+                                    <p class="text-xs text-text-secondary mt-1">Mobile payment</p>
+                                </div>
+                            </label>
+
+
+
+                            <label
+                                class="border border-secondary-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors duration-200">
+                                <input type="radio" name="paymentMethod" value="bank" class="sr-only" />
+                                <div class="text-center">
+                                    <div
+                                        class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M11.5 1L2 6v2h20V6l-9.5-5zM2 9v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9H2zm4 7H4v-2h2v2zm0-3H4v-2h2v2zm4 3H8v-2h2v2zm0-3H8v-2h2v2zm4 3h-2v-2h2v2zm0-3h-2v-2h2v2zm4 3h-2v-2h2v2zm0-3h-2v-2h2v2z" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium text-text-primary">Actual Payment</span>
+                                    <p class="text-xs text-text-secondary mt-1">Face to Face Payment</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                        <button type="button" class="btn-secondary flex-1 py-3 text-base font-semibold"
+                            onclick="window.history.back()">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Back to Room Selection
+                        </button>
+
+                        <button type="submit" id="submitBtn" class="btn-primary flex-1 py-3 text-base font-semibold">
+                            <span id="submitText">Submit Booking Request</span>
+                            <svg id="submitSpinner" class="hidden animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4" />
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg max-w-md w-full p-6 animate-fade-in">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-text-primary mb-2">Booking Request Submitted!</h3>
+                <p class="text-text-secondary mb-6">Your room booking request has been successfully submitted. You will
+                    receive a confirmation email shortly.</p>
+                <div class="space-y-3">
+                    <button onclick="window.location.href='student_dashboard.html'" class="btn-primary w-full">
+                        Go to Dashboard
+                    </button>
+                    <button onclick="closeModal()" class="btn-secondary w-full">
+                        Submit Another Request
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offline Status Indicator -->
+    <div id="offlineIndicator"
+        class="hidden fixed bottom-4 left-4 bg-warning text-white px-4 py-2 rounded-lg shadow-lg z-50">
+        <div class="flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+            <span class="text-sm">You're offline. Form data will be saved locally.</span>
+        </div>
+    </div>
+
+    <script src="../public/js/room_booking.js"></script>
+    <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+
+</html>

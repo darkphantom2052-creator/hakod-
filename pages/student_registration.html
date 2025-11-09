@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - JRMSU TC</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-primary-50 via-background to-secondary-50">
+    <main class="max-w-md mx-auto p-6">
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" />
+                </svg>
+            </div>
+            <h1 class="text-2xl font-bold mb-2">Create Student Account</h1>
+            <p class="text-text-secondary">Sign up to access the JRMSU TC Boarding House</p>
+        </div>
+
+        <form id="registrationForm" class="space-y-4 bg-white p-6 rounded-lg shadow-sm">
+            <!-- TC Number -->
+            <div>
+                <label for="studentId" class="block text-sm font-medium mb-1">TC Number</label>
+                <input type="text" id="studentId" name="studentId" class="form-input w-full"
+                    placeholder="TC-YY-Section-NNNNN" pattern="TC-\d{2}-[A-D]-\d{5}" required>
+                <div id="studentIdError" class="text-sm text-error mt-1 hidden"></div>
+            </div>
+
+            <!-- Full Name -->
+            <div>
+                <label for="fullName" class="block text-sm font-medium mb-1">Full Name</label>
+                <input type="text" id="fullName" name="fullName" class="form-input w-full" placeholder="Your full name"
+                    required>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password" class="form-label">Password *</label>
+                <div class="relative">
+                    <input type="password" id="password" name="password" class="form-input pr-10" required
+                        placeholder="Create a secure password" />
+                    <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                        <svg class="w-5 h-5 text-text-muted hover:text-text-secondary transition-colors duration-200"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="passwordError" class="form-error hidden">Password must be at least 8 characters</div>
+                <div class="text-xs text-text-muted mt-1">
+                    Password requirements:
+                    <ul class="mt-1 space-y-1 list-inside">
+                        <li id="lengthCheck" class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-text-muted" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            At least 8 characters
+                        </li>
+                        <li id="upperCheck" class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-text-muted" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            One uppercase letter
+                        </li>
+                        <li id="numberCheck" class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-text-muted" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            One number
+                        </li>
+                        <li id="specialCheck" class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-text-muted" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            One special character
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <label for="confirmPassword" class="form-label">Confirm Password *</label>
+                <div class="relative">
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-input pr-10" required
+                        placeholder="Confirm your password" />
+                    <button type="button" id="toggleConfirmPassword"
+                        class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                        <svg class="w-5 h-5 text-text-muted hover:text-text-secondary transition-colors duration-200"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="confirmPasswordError" class="form-error hidden">Passwords must match</div>
+            </div>
+
+            <!-- Terms and Privacy -->
+            <div class="form-group">
+                <div class="flex items-start">
+                    <input id="agreeTerms" name="agreeTerms" type="checkbox"
+                        class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded mt-1" required />
+                    <label for="agreeTerms" class="ml-3 text-sm text-text-secondary">
+                        I agree to the <a href="#" class="text-primary hover:text-primary-700 font-medium">Terms of
+                            Service</a> and
+                        <a href="#" class="text-primary hover:text-primary-700 font-medium">Privacy Policy</a>
+                    </label>
+                </div>
+                <div id="agreeTermsError" class="form-error hidden">You must agree to the terms and privacy policy</div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-primary w-full py-3">
+                <span id="submitText">Create Account</span>
+                <svg id="submitSpinner" class="hidden animate-spin -ml-1 mr-3 h-4 w-4 text-white"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                </svg>
+            </button>
+
+            <p class="text-center text-sm text-text-secondary">
+                Already have an account?
+                <a href="student_login.html" class="text-primary hover:text-primary-700 font-medium">Sign in</a>
+            </p>
+        </form>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 animate-fade-in">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-success rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-text-primary mb-2">Account Created!</h3>
+                <p class="text-text-secondary mb-6">Your account has been created successfully. You will be redirected
+                    to your dashboard shortly.</p>
+                <div class="flex items-center justify-center">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../public/js/student_regis.js"></script>
+</body>
+
+</html>

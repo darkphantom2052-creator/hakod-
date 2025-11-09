@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JRMSU TC Boarding House System</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script type="module"
+        src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fjrmsutcb4972back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+    <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-primary-50 via-background to-secondary-50">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5" />
+                </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#grid)" />
+        </svg>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="relative z-10 bg-white/80 backdrop-blur-sm border-b border-secondary-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <div
+                        class="w-14 h-14 bg-primary rounded-xl flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-105 hover:rotate-3">
+                        <svg class="w-9 h-9 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path class="drop-shadow-lg" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            <path class="animate-pulse" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" opacity="0.5"
+                                d="M9 21h6m-6 0H4a1 1 0 01-1-1v-5M21 16v4a1 1 0 01-1 1h-5m0-11v-1a1 1 0 00-1-1h-2a1 1 0 00-1 1v1m4 0h-4" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-2xl font-bold text-text-primary tracking-wide leading-tight">JRMSU TC</h1>
+                        <p class="text-sm text-text-secondary font-medium tracking-wide">Boarding House System</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-6">
+
+                    <a href="pages/student_login.html"
+                        class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-secondary-100 text-primary hover:bg-secondary-200 transition-all duration-200 shadow-sm hover:shadow group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        <span class="font-medium group-hover:translate-x-1 transition-transform duration-200">Student
+                            Login</span>
+                    </a>
+                    <a href="pages/landlord_login.html"
+                        class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary-600 transition-all duration-200 shadow-sm hover:shadow group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <span class="font-medium group-hover:translate-x-1 transition-transform duration-200"> Landlord
+                            Login</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn"
+                    class="md:hidden p-2 rounded-md text-text-secondary hover:text-primary hover:bg-secondary-100 transition-colors duration-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="pages/student_login.html"
+                        class="block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-secondary-50">
+                        Student Login
+                    </a>
+                    <a href="pages/landlord_login.html"
+                        class="block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-secondary-50">
+                        Landlord Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center">
+                <h1 class="text-4xl tracking-tight font-extrabold text-text-primary sm:text-5xl md:text-6xl">
+                    Welcome to JRMSU TC
+                    <span class="block text-primary">Boarding House System</span>
+                </h1>
+                <p
+                    class="mt-3 max-w-md mx-auto text-base text-text-secondary sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                    Boarding House system for Jose Rizal Memorial State University - Tampilisan Campus.
+                </p>
+                <div class="mt-8 max-w-lg mx-auto sm:flex sm:justify-center md:mt-10">
+                    <div class="rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105">
+                        <a href="pages/student_registration.html"
+                            class="w-full flex items-center justify-center px-8 py-4 border border-transparent text-lg font-semibold rounded-xl text-white bg-primary hover:bg-primary-600 transition-colors duration-300 space-x-3">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                            </svg>
+                            <span>Register as Tenants</span>
+                        </a>
+                    </div>
+                    <div
+                        class="mt-4 sm:mt-0 sm:ml-4 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105">
+                        <a href="pages/landlord_registration.html"
+                            class="w-full flex items-center justify-center px-8 py-4 border border-transparent text-lg font-semibold rounded-xl text-primary bg-white hover:bg-secondary-50 transition-colors duration-300 space-x-3">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            <span>Register as Landlord </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+
+        <!-- Call to Action -->
+
+
+        <!-- Footer -->
+        <footer class="bg-white">
+            <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+                    <!-- Navigation -->
+                    <div class="col-span-2 md:col-span-1">
+                        <h3 class="text-sm font-semibold text-text-primary tracking-wider uppercase">Navigation</h3>
+                        <ul class="mt-4 space-y-4">
+
+                            <li>
+                                <a href="pages/student_login.html"
+                                    class="text-base text-text-secondary hover:text-primary">
+                                    Student Login
+                                </a>
+                            </li>
+                            <li>
+                                <a href="pages/landlord_login.html"
+                                    class="text-base text-text-secondary hover:text-primary">
+                                    Admin Login
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Registration -->
+                    <div class="col-span-2 md:col-span-1">
+                        <h3 class="text-sm font-semibold text-text-primary tracking-wider uppercase">Registration</h3>
+                        <ul class="mt-4 space-y-4">
+                            <li>
+                                <a href="pages/student_registration.html"
+                                    class="text-base text-text-secondary hover:text-primary">
+                                    Student Registration
+                                </a>
+                            </li>
+                            <li>
+                                <a href="pages/landlord_registration.html"
+                                    class="text-base text-text-secondary hover:text-primary">
+                                    Landlord Registration
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="col-span-2 md:col-span-1">
+                        <h3 class="text-sm font-semibold text-text-primary tracking-wider uppercase">Contact</h3>
+                        <ul class="mt-4 space-y-4">
+                            <li class="text-base text-text-secondary">
+                                Jose Rizal Memorial State University
+                            </li>
+                            <li class="text-base text-text-secondary">
+                                Tampilisan Campus
+                            </li>
+                            <li class="text-base text-text-secondary">
+                                Email: support@jrmsu.edu.ph
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="col-span-2 md:col-span-1">
+                        <h3 class="text-sm font-semibold text-text-primary tracking-wider uppercase">Follow Us</h3>
+                        <ul class="mt-4 space-y-4">
+                            <li>
+                                <a href="#" class="text-base text-text-secondary hover:text-primary">Facebook</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-base text-text-secondary hover:text-primary">Twitter</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-base text-text-secondary hover:text-primary">Instagram</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 border-t border-secondary-200 pt-8">
+                    <p class="text-base text-text-secondary text-center">
+                        © 2025 Jose Rizal Memorial State University - Tampilisan Campus.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Check user authentication status
+            window.addEventListener('load', function () {
+                const userType = localStorage.getItem('userType');
+                const userEmail = localStorage.getItem('userEmail');
+
+                if (userType && userEmail) {
+                    // Redirect authenticated users to their respective dashboards
+                    if (userType === 'admin') {
+                        window.location.href = 'pages/admin_dashboard.html';
+                    } else if (userType === 'student') {
+                        window.location.href = 'pages/student_dashboard.html';
+                    }
+                }
+            });
+
+            // Offline detection
+            function updateOnlineStatus() {
+                if (!navigator.onLine) {
+                    const offlineIndicator = document.createElement('div');
+                    offlineIndicator.className = 'fixed bottom-4 left-4 bg-warning text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                    offlineIndicator.innerHTML = `
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                        </svg>
+                        <span class="text-sm">You're offline. Some features may be limited.</span>
+                    </div>
+                `;
+                    document.body.appendChild(offlineIndicator);
+                } else {
+                    const offlineIndicator = document.querySelector('.fixed.bottom-4.left-4');
+                    if (offlineIndicator) {
+                        offlineIndicator.remove();
+                    }
+                }
+            }
+
+            window.addEventListener('online', updateOnlineStatus);
+            window.addEventListener('offline', updateOnlineStatus);
+            updateOnlineStatus();
+        </script>
+        <script id="dhws-dataInjector" src="public/dhws-data-injector.js"></script>
+</body>
+
+</html>

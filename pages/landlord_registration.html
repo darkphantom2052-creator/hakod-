@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landlord Registration - JRMSU TC Boarding House System</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script type="module"
+        src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fjrmsutcb4972back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+    <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-primary-50 via-background to-secondary-50">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5" />
+                </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#grid)" />
+        </svg>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="relative z-10 bg-white/80 backdrop-blur-sm border-b border-secondary-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-text-primary">JRMSU TC</h1>
+                        <p class="text-xs text-text-secondary">Boarding House System</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+
+
+                <!-- Mobile Menu Button -->
+                <button
+                    class="md:hidden p-2 rounded-md text-text-secondary hover:text-primary hover:bg-secondary-100 transition-colors duration-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 flex-1 flex items-center justify-center px-4 py-12">
+        <div class="w-full max-w-md">
+            <!-- Registration Card -->
+            <div class="card-elevated p-8 animate-fade-in">
+                <!-- Landlord Registration Header -->
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-text-primary mb-2">Landlord Registration</h2>
+                    <p class="text-text-secondary">Register your boarding house with JRMSU TC</p>
+                </div>
+
+                <!-- Registration Form -->
+                <form id="registrationForm" class="space-y-6">
+                    <!-- Personal Information -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold text-text-primary">Personal Information</h3>
+
+                        <!-- Full Name -->
+                        <div class="form-group">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" class="form-input"
+                                placeholder="Enter your full name" required />
+                            <div id="fullNameError" class="form-error hidden">Full name is required</div>
+                        </div>
+
+                        <!-- Contact Number -->
+                        <div class="form-group">
+                            <label for="contactNumber" class="form-label">Contact Number</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2 text-text-secondary">+63</span>
+                                <input type="tel" id="contactNumber" name="contactNumber" class="form-input pl-12"
+                                    placeholder="9XX XXX XXXX" pattern="[9][0-9]{9}" required />
+                            </div>
+                            <div id="contactNumberError" class="form-error hidden">Please enter a valid Philippine
+                                mobile number</div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input"
+                                placeholder="Enter your email address" required />
+                            <div id="emailError" class="form-error hidden">Please enter a valid email address</div>
+                        </div>
+                    </div>
+
+                    <!-- Property Information -->
+                    <div class="space-y-4 pt-4">
+                        <h3 class="text-lg font-semibold text-text-primary">Property Information</h3>
+
+                        <!-- Boarding House Name -->
+                        <div class="form-group">
+                            <label for="propertyName" class="form-label">Boarding House Name</label>
+                            <input type="text" id="propertyName" name="propertyName" class="form-input"
+                                placeholder="Enter your boarding house name" required />
+                            <div id="propertyNameError" class="form-error hidden">Property name is required</div>
+                        </div>
+
+                        <!-- Property Address -->
+                        <div class="form-group">
+                            <label for="propertyAddress" class="form-label">Complete Property Address</label>
+                            <textarea id="propertyAddress" name="propertyAddress" rows="3" class="form-input"
+                                placeholder="Enter complete property address" required></textarea>
+                            <div id="propertyAddressError" class="form-error hidden">Property address is required</div>
+                        </div>
+
+                        <!-- Distance from Campus -->
+                        <div class="form-group">
+                            <label for="distanceFromCampus" class="form-label">Distance from JRMSU TC (in
+                                kilometers)</label>
+                            <input type="number" id="distanceFromCampus" name="distanceFromCampus" class="form-input"
+                                placeholder="Enter distance in km" step="0.1" min="0" required />
+                            <div id="distanceError" class="form-error hidden">Please enter a valid distance</div>
+                        </div>
+                    </div>
+
+                    <!-- Property Details -->
+                    <div class="space-y-4 pt-4">
+                        <h3 class="text-lg font-semibold text-text-primary">Property Details</h3>
+
+                        <!-- Number of Rooms -->
+                        <div class="form-group">
+                            <label for="totalRooms" class="form-label">Total Number of Rooms</label>
+                            <input type="number" id="totalRooms" name="totalRooms" class="form-input"
+                                placeholder="Enter total number of rooms" min="1" required />
+                            <div id="totalRoomsError" class="form-error hidden">Please enter the number of rooms</div>
+                        </div>
+
+                        <!-- Room Types -->
+                        <div class="form-group">
+                            <label class="form-label">Room Types Available</label>
+                            <div class="space-y-2">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="roomTypes" value="single"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded">
+                                    <span class="ml-2 text-text-secondary">Single Room</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="roomTypes" value="double"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded">
+                                    <span class="ml-2 text-text-secondary">Double Room</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="roomTypes" value="dormitory"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded">
+                                    <span class="ml-2 text-text-secondary">Dormitory Style</span>
+                                </label>
+                            </div>
+                            <div id="roomTypesError" class="form-error hidden">Please select at least one room type
+                            </div>
+                        </div>
+
+                        <!-- Amenities -->
+                        <div class="form-group">
+                            <label class="form-label">Available Amenities</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="amenities" value="wifi"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded">
+                                    <span class="ml-2 text-text-secondary">Wi-Fi</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="amenities" value="aircon"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded">
+                                    <span class="ml-2 text-text-secondary">Air Conditioning</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="amenities" value="kitchen"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded">
+                                    <span class="ml-2 text-text-secondary">Common Kitchen</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="amenities" value="laundry"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded">
+                                    <span class="ml-2 text-text-secondary">Laundry Area</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label for="minPrice" class="form-label">Minimum Price (₱)</label>
+                                <input type="number" id="minPrice" name="minPrice" class="form-input"
+                                    placeholder="Minimum price" min="0" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="maxPrice" class="form-label">Maximum Price (₱)</label>
+                                <input type="number" id="maxPrice" name="maxPrice" class="form-input"
+                                    placeholder="Maximum price" min="0" required />
+                            </div>
+                            <div id="priceError" class="form-error hidden col-span-2">Please enter valid price range
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password Section -->
+                    <div class="space-y-4 pt-4">
+                        <h3 class="text-lg font-semibold text-text-primary">Account Security</h3>
+
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="relative">
+                                <input type="password" id="password" name="password" class="form-input"
+                                    placeholder="Create a strong password" required minlength="8" />
+                                <button type="button" id="togglePassword"
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                    <svg class="w-5 h-5 text-text-muted hover:text-text-secondary" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div id="passwordError" class="form-error hidden">Password must be at least 8 characters
+                            </div>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="form-group">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-input"
+                                placeholder="Confirm your password" required />
+                            <div id="confirmPasswordError" class="form-error hidden">Passwords do not match</div>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="form-group pt-4">
+                        <div class="flex items-start space-x-2">
+                            <input type="checkbox" id="terms" name="terms"
+                                class="mt-1 h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded"
+                                required />
+                            <label for="terms" class="block text-sm text-text-secondary">
+                                I confirm that I am the legal owner or authorized representative of this property and
+                                agree to the
+                                <a href="#" class="text-primary hover:text-primary-700">Terms of Service</a>,
+                                <a href="#" class="text-primary hover:text-primary-700">Privacy Policy</a>, and
+                                <a href="#" class="text-primary hover:text-primary-700">Landlord Guidelines</a>
+                            </label>
+                        </div>
+                        <div id="termsError" class="form-error hidden">You must agree to the terms</div>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="registrationError"
+                        class="hidden bg-error-50 border border-error-200 text-error-700 px-4 py-3 rounded-md text-sm">
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span id="registrationErrorMessage">Please check all required fields and try again</span>
+                        </div>
+                    </div>
+
+                    <!-- Register Button -->
+                    <button type="submit" id="registerBtn"
+                        class="btn-primary w-full py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center space-x-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                        <span id="registerText">Register as Landlord</span>
+                        <svg id="loadingSpinner" class="hidden animate-spin h-6 w-6 text-white"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                    </button>
+                </form>
+
+                <!-- Login Link -->
+                <div class="mt-6 text-center">
+                    <p class="text-text-secondary text-sm">
+                        Already have an account?
+                        <a href="landlord_login.html" class="text-primary hover:text-primary-700 font-medium">
+                            Sign in here
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Trust Signals -->
+            <div class="mt-8 text-center">
+                <div class="flex items-center justify-center space-x-4 text-text-muted text-xs">
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Secure Registration
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        </svg>
+                        Official JRMSU TC Portal
+                    </div>
+                </div>
+                <p class="mt-2 text-text-muted text-xs">
+                    © 2025 Jose Rizal Memorial State University - Tampilisan Campus. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script src="../public/js/landlord_registration.js"></script>
+    <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+
+</html>
